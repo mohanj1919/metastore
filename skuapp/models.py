@@ -29,24 +29,13 @@ class Category(models.Model):
         return self.name
 
 
-class LocationDepartmentCategorySubCategory(models.Model):
-    id = models.AutoField(primary_key=True)
-    location = models.ForeignKey(to=Location, on_delete=CASCADE)
-    department = models.ForeignKey(to=Department, on_delete=CASCADE)
-    category = models.ForeignKey(to=Category, on_delete=CASCADE, related_name="category_meta_info")
-    sub_category = models.ForeignKey(to=Category, on_delete=CASCADE, related_name="sub_category_meta_info")
-
-    def __str__(self) -> str:
-        return f'{self.location}, {self.department}, {self.category}, {self.sub_category}'
-
-
 class ProductSku(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(null=False, max_length=255, db_index=True)
-    meta_info = models.ForeignKey(
-        to=LocationDepartmentCategorySubCategory, related_name="products",
-        on_delete=CASCADE
-    )
+    location = models.ForeignKey(to=Location, on_delete=CASCADE, default=None)
+    department = models.ForeignKey(to=Department, on_delete=CASCADE, default=None)
+    category = models.ForeignKey(to=Category, on_delete=CASCADE, default=None, related_name="category_meta_info")
+    sub_category = models.ForeignKey(to=Category, on_delete=CASCADE, default=None, related_name="sub_category_meta_info")
 
     def __str__(self) -> str:
         return self.name
