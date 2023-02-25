@@ -14,7 +14,7 @@ e./api/v1/location/{location_id}/department/{department_id}/category/{category_i
 3.Write a api endpoint that takes input meta-data and returns all the SKU rows in the "Data" that matches with the input meta-data. 
 For example, for input meta-data (Perimeter, Bakery, Bakery Bread, Bagels) , return the rows with SKUs 1 & 14 (The actual data given to you might contain more rows)
 
-### Sample data
+### Sample data required to test
 
 META DATA:
 
